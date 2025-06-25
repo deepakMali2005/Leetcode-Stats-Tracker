@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import type { RouteHandlerContext } from 'next/dist/server/web/types';
+type RouteHandlerContext = { params: { username?: string } };
 
 export async function GET(
   _req: NextRequest,
