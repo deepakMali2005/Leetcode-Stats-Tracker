@@ -1,10 +1,15 @@
 import { NextRequest } from 'next/server';
+import type { RouteHandlerContext } from 'next/dist/server/web/types';
 
 export async function GET(
   _req: NextRequest,
-  context: { params: { username: string } }
+  context: RouteHandlerContext
 ): Promise<Response> {
-  const { username } = context.params;
+  const username = context.params?.username;
+
+  if (!username) {
+    return new Response("Username parameter missing", { status: 400 });
+  }
 
   try {
     const response = await fetch("https://leetcode.com/graphql", {
@@ -117,7 +122,7 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error("⚠️ Error fetching data from LeetCode GraphQL:", error);
+    console.error("❌ Error fetching data:", error);
     return new Response("Internal Server Error", { status: 500 });
   }
 }
