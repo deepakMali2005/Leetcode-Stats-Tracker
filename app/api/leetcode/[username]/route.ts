@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { username: string } }
+  { params }: any
 ): Promise<Response> {
   const username = params.username;
 
