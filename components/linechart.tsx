@@ -12,7 +12,12 @@ import {
   ResponsiveContainer
 } from 'recharts'
 
-const ContestRatingChart = ({ data }: { data: any[] }) => {
+type ContestDataPoint = {
+  contestName: string
+  rating: number
+}
+
+const ContestRatingChart = ({ data }: { data: ContestDataPoint[] }) => {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <LineChart data={data}>

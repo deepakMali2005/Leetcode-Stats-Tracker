@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+// import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import Logo from "@/components/logo"
@@ -12,7 +12,7 @@ import { getLeetcodeData } from '@/lib/leetcode'
 
 const MainPage = () => {
     const [username, setUsername] = useState("")
-    const [platform, setPlatform] = useState("leetcode")
+    // const [platform, setPlatform] = useState("leetcode")
     const router = useRouter()
 
     const handleSearch = async () => {
@@ -103,7 +103,7 @@ const MainPage = () => {
 
                 <Input
                     value={username}
-                    placeholder={`Enter ${platform} username`}
+                    placeholder={`Enter leetcode username`}
                     onChange={(e) => setUsername(e.target.value)}
                 />
 

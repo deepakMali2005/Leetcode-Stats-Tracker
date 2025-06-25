@@ -3,7 +3,13 @@
 import React from 'react'
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts'
 
-const PieChartComponent = ({ questionStats }: { questionStats: any }) => {
+type QuestionStats = {
+  easy: number;
+  medium: number;
+  hard: number;
+};
+
+const PieChartComponent = ({ questionStats }: { questionStats: QuestionStats }) => {
   const pieData = [
     { name: 'Easy', value: questionStats.easy },
     { name: 'Medium', value: questionStats.medium },
