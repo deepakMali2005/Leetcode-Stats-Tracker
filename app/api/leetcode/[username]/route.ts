@@ -1,10 +1,10 @@
 import { NextRequest } from 'next/server';
 
 export async function GET(
-  request: NextRequest,
-  context: { params: { username: string } }
+  req: NextRequest,
+  { params }: { params: Record<string, string> }
 ) {
-  const { username } = context.params;
+  const username = params.username;
 
   try {
     const response = await fetch("https://leetcode.com/graphql", {
