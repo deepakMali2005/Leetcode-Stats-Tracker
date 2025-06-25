@@ -1,10 +1,10 @@
 import { NextRequest } from 'next/server';
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: Record<string, string> }
-) {
-  const username = params.username;
+  _req: NextRequest,
+  context: { params: { username: string } }
+): Promise<Response> {
+  const { username } = context.params;
 
   try {
     const response = await fetch("https://leetcode.com/graphql", {
@@ -52,16 +52,13 @@ export async function GET(
             }
           }
         `,
-        variables: {
-          username,
-        },
+        variables: { username },
       }),
     });
 
     const data = await response.json();
 
     if (!data.data?.matchedUser) {
-      console.error("❌ User not found");
       return new Response("User not found", { status: 404 });
     }
 
@@ -114,7 +111,11 @@ export async function GET(
       })),
     };
 
-    return new Response(JSON.stringify(responseData), { status: 200 });
+    return new Response(JSON.stringify(responseData), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
   } catch (error) {
     console.error("⚠️ Error fetching data from LeetCode GraphQL:", error);
     return new Response("Internal Server Error", { status: 500 });
