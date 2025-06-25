@@ -1,11 +1,10 @@
 import { NextRequest } from 'next/server';
-type RouteHandlerContext = { params: { username?: string } };
 
 export async function GET(
   _req: NextRequest,
-  context: RouteHandlerContext
+  { params }: { params: { username: string } }
 ): Promise<Response> {
-  const username = context.params?.username;
+  const username = params.username;
 
   if (!username) {
     return new Response("Username parameter missing", { status: 400 });
